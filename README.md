@@ -1,2 +1,2 @@
 # SoftwareEngineerCourse-A-trade-platform
-a course programe, a school trade platform
+a course project, a school trade platform
