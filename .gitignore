@@ -2,3 +2,6 @@ venv/
 data/
 *.log
 *.tmp
+*cache*
+__pycache__/
+*.pyc
