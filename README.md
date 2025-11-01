@@ -1,2 +1,2 @@
-# SoftwareEngineerCourse-A-trade-plantform
-a course programe, a school trade plantform
+# SoftwareEngineerCourse-A-trade-platform
+a course programe, a school trade platform
