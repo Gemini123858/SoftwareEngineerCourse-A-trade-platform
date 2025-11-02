@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QDialog, QTableWidgetItem, QMessageBox
 from PyQt5.QtCore import Qt
-from src.ui_admin_dialog import Ui_AdminDialog
+from src.ui_admin_dialog import Ui_Dialog as Ui_AdminDialog
 from src.services.admin_service import AdminService
 
 class AdminController(QDialog):

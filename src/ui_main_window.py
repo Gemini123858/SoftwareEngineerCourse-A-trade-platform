@@ -87,7 +87,7 @@ class Ui_MainWindow(object):
         self.searchLineEdit.setPlaceholderText(_translate("MainWindow", "search products..."))
         self.searchButton.setText(_translate("MainWindow", "Search"))
         self.publishItemButton.setText(_translate("MainWindow", "Publish Products"))
-        self.adminPanelButton.setText(_translate("MainWindow", "Publish Products"))
+        self.adminPanelButton.setText(_translate("MainWindow", "AdminPanel"))
         self.logoutButton.setText(_translate("MainWindow", "Log Out"))
 
 

@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QDialog, QMessageBox
-from src.ui_register_dialog import Ui_RegisterDialog
+from src.ui_register_dialog import Ui_registerDialog
 from src.services.auth_service import AuthService
 
 class RegisterController(QDialog):
@@ -7,7 +7,7 @@ class RegisterController(QDialog):
         super().__init__()
         self.auth_service = auth_service
         
-        self.ui = Ui_RegisterDialog()
+        self.ui = Ui_registerDialog()
         self.ui.setupUi(self)
 
         self.ui.registerButton.clicked.connect(self.handle_register)
@@ -30,7 +30,7 @@ class RegisterController(QDialog):
         try:
             self.auth_service.register(email, password, nickname, contact_info)
             # 弹窗提示成功
-            QMessageBox.information(self, "注册成功", "您的账户已成功创建！现在可以返回登录了。")
+            QMessageBox.information(self, "Sign Up Successful", "Finish registering new account.")
             self.accept() # 关闭注册窗口
         except ValueError as e:
             self.ui.errorLabel.setText(f"注册失败: {e}")

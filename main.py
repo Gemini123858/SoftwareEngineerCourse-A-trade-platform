@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QDialog
 from src.data_manager import DataManager
 from src.services.auth_service import AuthService
 from src.services.item_service import ItemService
@@ -7,6 +8,10 @@ from src.services.admin_service import AdminService
 from src.controllers.login_controller import LoginController
 from src.controllers.main_controller import MainWindowController
 import os
+from src.controllers.login_controller import REOPEN_CODE
+
+# export QT_QPA_PLATFORM_PLUGIN_PATH=/mnt/e/软件工程/Exp3/venv/lib/python3.10/site-packages/PyQt5/Qt5/plugins/platforms
+# before running the application, especially on Linux.
 
 def setup_initial_data(data_manager: DataManager, auth_service: AuthService):
     """如果用户数据为空，则创建一个管理员账户"""
@@ -38,26 +43,26 @@ def main():
 
     # --- 2. 启动应用主循环 ---
     while True:
-        # 显示登录窗口
         login_dialog = LoginController(auth_service)
-        
-        # 如果登录成功 (dialog.exec() 返回 1)
-        if login_dialog.exec():
-            # 获取登录信息
+        result = login_dialog.exec() # 获取返回码
+
+        if result == QDialog.DialogCode.Accepted: # 登录成功
             session_id = login_dialog.session_id
             user = login_dialog.user
             
-            # 创建并显示主窗口
             main_window = MainWindowController(session_id, user, auth_service, item_service, admin_service)
             main_window.show()
             
-            # app.exec() 会阻塞，直到主窗口关闭
-            app.exec()
-            
-            # 主窗口关闭后 (用户登出), 循环会继续，再次显示登录窗口
+            app.exec() # 等待主窗口关闭 (登出)
+            # 主窗口关闭后，循环继续，会重新显示登录窗口
             print("User logged out. Returning to login screen.")
-        else:
-            # 如果用户关闭了登录窗口，则退出整个应用
+            continue # 明确地继续下一次循环
+
+        elif result == REOPEN_CODE: # 注册成功，需要重新打开登录窗口
+            print("Registration successful. Re-opening login screen.")
+            continue # 直接进入下一次循环，创建新的 LoginController
+
+        else: # 用户关闭了登录窗口或以其他方式取消
             print("Login cancelled. Exiting application.")
             break # 退出循环
 

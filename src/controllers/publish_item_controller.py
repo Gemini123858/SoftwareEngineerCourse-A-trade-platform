@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QDialog
-from src.ui_publish_item_dialog import Ui_PublishItemDialog
+from src.ui_publish_item_dialog import Ui_PublishItem
 from src.services.item_service import ItemService
 
 class PublishItemController(QDialog):
@@ -8,7 +8,7 @@ class PublishItemController(QDialog):
         self.session_id = session_id
         self.item_service = item_service
 
-        self.ui = Ui_PublishItemDialog()
+        self.ui = Ui_PublishItem()
         self.ui.setupUi(self)
 
         self.ui.submitButton.clicked.connect(self.handle_submit)
