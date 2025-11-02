@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "email": "admin@app.com",
+        "password_hash": "hashed_admin123",
+        "nickname": "Admin",
+        "contact_info": "Internal",
+        "role": "ADMIN",
+        "created_at": 1762072996.2018092
+    },
+    {
+        "id": 2,
+        "email": "858902146@qq.com",
+        "password_hash": "hashed_167294",
+        "nickname": "Gemini",
+        "contact_info": "QQ:858902146",
+        "role": "USER",
+        "created_at": 1762074265.2964325
+    },
+    {
+        "id": 3,
+        "email": "112233",
+        "password_hash": "hashed_123",
+        "nickname": "G",
+        "contact_info": "1",
+        "role": "USER",
+        "created_at": 1762074388.205933
+    },
+    {
+        "id": 4,
+        "email": "1",
+        "password_hash": "hashed_2",
+        "nickname": "4",
+        "contact_info": "5",
+        "role": "USER",
+        "created_at": 1762074829.498425
+    },
+    {
+        "id": 6,
+        "email": "3",
+        "password_hash": "hashed_3",
+        "nickname": "3",
+        "contact_info": "3",
+        "role": "USER",
+        "created_at": 1762075030.201187
+    }
+]

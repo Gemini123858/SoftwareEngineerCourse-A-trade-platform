@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "seller_id": 6,
+        "title": "A pair of shoes",
+        "description": "a pair of nike shoes, certainly new",
+        "price": 200.0,
+        "status": "AVAILABLE",
+        "image_paths": [],
+        "created_at": 1762075157.638741
+    }
+]
