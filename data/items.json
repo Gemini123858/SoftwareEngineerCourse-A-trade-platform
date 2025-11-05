@@ -8,5 +8,45 @@
         "status": "AVAILABLE",
         "image_paths": [],
         "created_at": 1762075157.638741
+    },
+    {
+        "id": 2,
+        "seller_id": 1,
+        "title": "Basketball",
+        "description": "a second hand basketball",
+        "price": 50.0,
+        "status": "AVAILABLE",
+        "image_paths": [],
+        "created_at": 1762344001.8322875
+    },
+    {
+        "id": 3,
+        "seller_id": 1,
+        "title": "iPhon",
+        "description": "a iPhon 13 Pro, used for two years",
+        "price": 2000.0,
+        "status": "AVAILABLE",
+        "image_paths": [],
+        "created_at": 1762344070.2481024
+    },
+    {
+        "id": 4,
+        "seller_id": 2,
+        "title": "Lenovo laptops",
+        "description": "Lenovo laptops xiaoxin 14 pro",
+        "price": 2500.0,
+        "status": "AVAILABLE",
+        "image_paths": [],
+        "created_at": 1762344239.9435508
+    },
+    {
+        "id": 5,
+        "seller_id": 2,
+        "title": "MatePad Air",
+        "description": "11's",
+        "price": 2500.0,
+        "status": "AVAILABLE",
+        "image_paths": [],
+        "created_at": 1762344360.6347232
     }
 ]

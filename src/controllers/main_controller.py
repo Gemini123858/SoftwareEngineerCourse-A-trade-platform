@@ -26,7 +26,7 @@ class MainWindowController(QMainWindow):
 
     def configure_ui_for_user(self):
         """根据用户角色配置UI"""
-        self.ui.welcomeLabel.setText(f"欢迎, {self.user.nickname}！")
+        self.ui.welcomeLabel.setText(f"Welcome, {self.user.nickname}!")
         if self.user.is_admin:
             self.ui.adminPanelButton.setEnabled(True)
             self.ui.adminPanelButton.setVisible(True)
@@ -52,7 +52,7 @@ class MainWindowController(QMainWindow):
     def populate_item_table(self, items):
         """用商品数据填充表格"""
         self.ui.itemTableWidget.setRowCount(len(items))
-        self.ui.itemTableWidget.setHorizontalHeaderLabels(["ID", "标题", "价格", "状态"])
+        self.ui.itemTableWidget.setHorizontalHeaderLabels(["ID", "Title", "Price", "Status"])
         
         for row, item in enumerate(items):
             self.ui.itemTableWidget.setItem(row, 0, QTableWidgetItem(str(item.id)))
@@ -74,9 +74,9 @@ class MainWindowController(QMainWindow):
         
         try:
             contact_info = self.item_service.express_interest(self.session_id, item_id)
-            QMessageBox.information(self, "卖家联系方式", f"已为您记录兴趣，卖家联系方式为：\n{contact_info}")
+            QMessageBox.information(self, "Seller Contact Information", f"Your interest has been recorded. Seller contact information:\n{contact_info}")
         except (ValueError, PermissionError) as e:
-            QMessageBox.warning(self, "操作失败", str(e))
+            QMessageBox.warning(self, "Operation Failed", str(e))
 
     def open_publish_dialog(self):
         dialog = PublishItemController(self.session_id, self.item_service)

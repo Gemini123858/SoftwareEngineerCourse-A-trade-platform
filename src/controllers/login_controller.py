@@ -25,14 +25,14 @@ class LoginController(QDialog):
         password = self.ui.passwordLineEdit.text()
 
         if not email or not password:
-            self.ui.errorLabel.setText("邮箱和密码不能为空。")
+            self.ui.errorLabel.setText("Email and password cannot be empty.")
             return
 
         try:
             self.session_id, self.user = self.auth_service.login(email, password)
             self.accept()  # 登录成功，关闭对话框
         except ValueError as e:
-            self.ui.errorLabel.setText(f"登录失败: {e}")
+            self.ui.errorLabel.setText(f"Login Failed: {e}")
 
     def open_register_dialog(self):
         register_dialog = RegisterController(self.auth_service)

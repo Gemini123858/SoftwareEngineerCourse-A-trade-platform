@@ -21,10 +21,10 @@ class RegisterController(QDialog):
 
         # 输入验证
         if not all([email, password, confirm_password, nickname, contact_info]):
-            self.ui.errorLabel.setText("所有字段均为必填项。")
+            self.ui.errorLabel.setText("All fields are required.")
             return
         if password != confirm_password:
-            self.ui.errorLabel.setText("两次输入的密码不一致。")
+            self.ui.errorLabel.setText("Passwords do not match.")
             return
 
         try:
@@ -33,4 +33,4 @@ class RegisterController(QDialog):
             QMessageBox.information(self, "Sign Up Successful", "Finish registering new account.")
             self.accept() # 关闭注册窗口
         except ValueError as e:
-            self.ui.errorLabel.setText(f"注册失败: {e}")
+            self.ui.errorLabel.setText(f"Registration Failed: {e}")

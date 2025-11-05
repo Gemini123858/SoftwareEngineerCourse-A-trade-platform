@@ -19,7 +19,7 @@ class PublishItemController(QDialog):
         price = self.ui.priceDoubleSpinBox.value()
 
         if not title or not description:
-            self.ui.errorLabel.setText("标题和描述不能为空。")
+            self.ui.errorLabel.setText("Title and description cannot be empty.")
             return
         
         try:
@@ -27,4 +27,4 @@ class PublishItemController(QDialog):
             self.item_service.publish_item(self.session_id, title, description, price, [])
             self.accept() # 成功后关闭对话框
         except PermissionError as e:
-            self.ui.errorLabel.setText(f"发布失败: {e}")
+            self.ui.errorLabel.setText(f"Publishing Failed: {e}")

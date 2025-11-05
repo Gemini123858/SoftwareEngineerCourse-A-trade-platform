@@ -25,7 +25,7 @@ class AdminController(QDialog):
             # 加载用户
             users = self.admin_service.get_all_users(self.session_id)
             self.ui.userTableWidget.setRowCount(len(users))
-            self.ui.userTableWidget.setHorizontalHeaderLabels(["ID", "昵称", "邮箱", "联系方式", "角色"])
+            self.ui.userTableWidget.setHorizontalHeaderLabels(["ID", "Nickname", "Email", "Contact", "Role"])
             for row, user in enumerate(users):
                 self.ui.userTableWidget.setItem(row, 0, self._create_unediable_item(str(user.id)))
                 self.ui.userTableWidget.setItem(row, 1, self._create_unediable_item(user.nickname))
@@ -36,7 +36,7 @@ class AdminController(QDialog):
             # 加载商品
             items = self.admin_service.get_all_items(self.session_id)
             self.ui.itemTableWidget.setRowCount(len(items))
-            self.ui.itemTableWidget.setHorizontalHeaderLabels(["ID", "标题", "价格", "卖家ID"])
+            self.ui.itemTableWidget.setHorizontalHeaderLabels(["ID", "Title", "Price", "Seller ID"])
             for row, item in enumerate(items):
                 self.ui.itemTableWidget.setItem(row, 0, self._create_unediable_item(str(item.id)))
                 self.ui.itemTableWidget.setItem(row, 1, self._create_unediable_item(item.title))
@@ -49,12 +49,12 @@ class AdminController(QDialog):
     def delete_selected_user(self):
         selected_rows = self.ui.userTableWidget.selectionModel().selectedRows()
         if not selected_rows:
-            QMessageBox.warning(self, "操作失败", "请先选择要删除的用户。")
+            QMessageBox.warning(self, "Operation Failed", "Please select a user to delete.")
             return
 
         user_id = int(self.ui.userTableWidget.item(selected_rows[0].row(), 0).text())
-        
-        reply = QMessageBox.question(self, "确认删除", f"你确定要删除 ID 为 {user_id} 的用户吗？此操作不可逆。",
+
+        reply = QMessageBox.question(self, "Confirm Deletion", f"Are you sure you want to delete the user with ID {user_id}? This action cannot be undone.",
                                      QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
         
         if reply == QMessageBox.StandardButton.Yes:
@@ -62,17 +62,17 @@ class AdminController(QDialog):
                 self.admin_service.delete_user(self.session_id, user_id)
                 self.load_data() # 刷新
             except (ValueError, PermissionError) as e:
-                QMessageBox.critical(self, "删除失败", str(e))
+                QMessageBox.critical(self, "Deletion Failed", str(e))
 
     def delete_selected_item(self):
         selected_rows = self.ui.itemTableWidget.selectionModel().selectedRows()
         if not selected_rows:
-            QMessageBox.warning(self, "操作失败", "请先选择要删除的商品。")
+            QMessageBox.warning(self, "Operation Failed", "Please select an item to delete.")
             return
         
         item_id = int(self.ui.itemTableWidget.item(selected_rows[0].row(), 0).text())
-        
-        reply = QMessageBox.question(self, "确认删除", f"你确定要删除 ID 为 {item_id} 的商品吗？",
+
+        reply = QMessageBox.question(self, "Confirm Deletion", f"Are you sure you want to delete the item with ID {item_id}?",
                                      QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
 
         if reply == QMessageBox.StandardButton.Yes:
@@ -80,7 +80,7 @@ class AdminController(QDialog):
                 self.admin_service.delete_item(self.session_id, item_id)
                 self.load_data() # 刷新
             except (ValueError, PermissionError) as e:
-                QMessageBox.critical(self, "删除失败", str(e))
+                QMessageBox.critical(self, "Deletion Failed", str(e))
 
     def _create_unediable_item(self, text: str) -> QTableWidgetItem:
         """创建一个不可编辑的表格项"""
