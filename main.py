@@ -67,4 +67,13 @@ def main():
             break # 退出循环
 
 if __name__ == "__main__":
+    # 植入缺陷1：null pointer dereference
+    null_pointer = None # pylint: disable=invalid-name
+    print(null_pointer.attribute)  # 试图访问 None 的属性，导致异常
+    # 植入缺陷2：memory leak
+    leak_list = [] # pylint: disable=invalid-name
+    def leak_memory():
+        while True:
+            leak_list.append('leak' * 1000)  # 不断增加内存使用
+    
     main()

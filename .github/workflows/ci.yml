@@ -1,0 +1,38 @@
+name: Unit Tests
+
+# 触发机制保持不变：推送到 main 分支时触发
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  unit-testing:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. 拉取代码
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 2. 设置 Python 3.10 环境
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    # 3. 安装依赖
+    # 注意：既然测试不涉及 UI，我们只需要安装 pytest 即可
+    # 如果你的 requirements.txt 里包含了 PyQt5，pip install 也会正常安装它（纯 Python 包），
+    # 只要我们在代码里不调用 QApplication() 启动界面，就不会报错。
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
+
+    # 4. 运行单元测试
+    # 不需要 xvfb-run 了，直接运行 pytest
+    - name: Run Unit Tests
+      run: |
+        pytest tests/test_united.py
